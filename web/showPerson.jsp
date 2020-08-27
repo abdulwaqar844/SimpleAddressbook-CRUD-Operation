@@ -21,13 +21,11 @@
                 <th>Address</th>
             </tr>
             <tbody>
-                <%
-             String oo=request.getParameter("object");
-                %>
+              
                 
                 
                 
-                <tr><%=oo%></tr>
+                <tr></tr>
                 <tr></tr>
                 <tr></tr>
             </tbody>

@@ -1,10 +1,8 @@
 package vu;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
@@ -17,6 +15,8 @@ public class controller extends HttpServlet {
             throws ServletException, IOException, SQLException, ClassNotFoundException {
 String action=request.getParameter("action");
 PrintWriter out = response.getWriter();
+                PersonDAO persondao=new PersonDAO();
+
         switch (action) {
             case "addperson":
                 response.sendRedirect("addperson.jsp");
@@ -29,7 +29,6 @@ PrintWriter out = response.getWriter();
                 response.sendRedirect("searchperson.jsp");
                 break;
             case "add":
-                PersonDAO persondao=new PersonDAO();
                 String pname=request.getParameter("pname");
                 String address=request.getParameter("address");
                 String phone=request.getParameter("phone");
@@ -42,6 +41,17 @@ PrintWriter out = response.getWriter();
 
 
                 break;
+            case "search":
+                String name=request.getParameter("searchrecord");
+                ArrayList personlist=persondao.retrievePersonList(name);
+                for(int i=0;i<personlist.size();i++){
+                person=(PersonInfo) personlist.get(i);
+                out.print(person.getName());
+                out.print(person.getAddress());
+                out.print(person.getPhoneNum());
+                
+                
+                }
         }
            
         
