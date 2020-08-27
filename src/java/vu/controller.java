@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +33,7 @@ PrintWriter out = response.getWriter();
                 String pname=request.getParameter("pname");
                 String address=request.getParameter("address");
                 String phone=request.getParameter("phone");
-               PersonInfo person=new PersonInfo();
+                PersonInfo person=new PersonInfo();
                 person.setName(pname);
                 person.setAddress(address);
                 person.setPhoneNum(phone);
@@ -44,14 +45,10 @@ PrintWriter out = response.getWriter();
             case "search":
                 String name=request.getParameter("searchrecord");
                 ArrayList personlist=persondao.retrievePersonList(name);
-                for(int i=0;i<personlist.size();i++){
-                person=(PersonInfo) personlist.get(i);
-                out.print(person.getName());
-                out.print(person.getAddress());
-                out.print(person.getPhoneNum());
-                
-                
-                }
+                request.setAttribute("list", personlist);
+                RequestDispatcher rd= request.getRequestDispatcher("showPerson.jsp");
+                rd.forward(request, response);
+                               
         }
            
         

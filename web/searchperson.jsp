@@ -4,6 +4,16 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Search Record</title>
+         <style>
+            
+            body{
+     
+                font-family: sans-serif;
+                font-size: 25px;
+                font-style: oblique;
+                text-align: center;
+            }
+        </style>
     </head>
     <body>
         <h1>Enter Record to Search</h1>
